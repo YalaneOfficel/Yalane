@@ -1,0 +1,361 @@
+const Discord = require("discord.js");
+const bot = new Discord.Client();
+const prefix = "y"
+const version = "6.2.1"
+const token = "HIDDEN"
+const game = "yhelp | https://mael-bot.webnode.fr/"
+const status = "En ligne"
+
+
+const embedRed = 0xff0000
+const embedOrange = 0xff790c
+const embedYellow = 0xffff00
+const embedGreen = 0x00ff00
+const embedBlue = 0x0064ff
+const embedPurple = 0x6a00b0
+const embedMagenta = 0x9600ff
+const embedPink = 0xff00ff
+const embedBlack = 0x000000
+const embedWhite = 0xffffff
+const embedGray = 0x777777
+
+var x = [
+    1,
+    2,
+    3,
+    4,
+    5,
+]
+
+var output = x[Math.floor(Math.random()*x.length)];
+
+
+var fortunes = [
+    "Yes.",
+    "It is certain.",
+    "It is decidedly so.",
+    "Without a doubt.",
+    "Yes definelty.",
+    "You may rely on it.",
+    "As I see it, yes.",
+    "Most likely.",
+    "Outlook good.",
+    "Signs point to yes.",
+    "Reply hazy, try again.",
+    "Ask again later.",
+    "Better not tell you now...",
+    "Cannot predict now.",
+    "Concentrate and ask again.",
+    "Don't count on it.",
+    "My reply is no.",
+    "My sources say no.",
+    "Outlook not so good...",
+    "Very doubtful.",
+];
+
+bot.on("ready", () => {
+    bot.user.setStatus(status)
+    bot.user.setGame(game)
+    console.log("Bot Ready For Use")
+})
+
+
+bot.on("message", message => {
+
+    if (message.content == "Qui est le surveillant?"){
+        message.channel.sendMessage("Eh bien, je suis un bot créé par le propriétaire du serveur, Yalane dans le but de surveiller son serveur chaque fois qu'il passe en AFK. Alors ne vous faites aucune idée.")
+    }
+    else if (message.content.toLowerCase() == "je te déteste surveillant"){
+        message.channel.sendMessage(`Awwww, merci ${message.author}`)
+    }
+    else if (message.content == "Y a-t-il quelqu'un en ligne?".toLowerCase() || message.content == "Y a-t-il quelqu'un en ligne?" || message.content == "Y a-t-il quelqu'un en ligne?".toLowerCase() || message.content == "Y a-t-il quelqu'un en ligne?".toLowerCase()){
+        message.channel.sendMessage("Je suis en ligne!")
+    } 
+    else if (message.content == "Hé surveillant!" || message.content == "Hé surveillant!" || message.content == "Hé surveillant!" || message.content == "Hé surveillant!" || message.content == "hey Overseer" || message.content == "Hé surveillant!"){
+        message.channel.sendMessage("Quoi de neuf?")
+    }
+    else if (message.content == "Où est Yalane" || message.content == "Où sont les administrateurs" || message.content == "Où est Yalane".toLowerCase || message.content == "Où est Yalane" || message.content == "Où sont les administrateurs" || message.content == "Où est Yalane".toLowerCase || message.content == "Où sont les administrateurs".toLowerCase){
+        message.channel.sendMessage("Je ne suis pas sûr, mais si vous avez des problèmes avec les joueurs, je suis ici!")
+    }
+    else if (message.content == "bots.access.overseer.launchProtocal:316,modifiers='12,5,53,30'"){
+        for (i = 0; i < 30; i++) {
+            message.channel.sendMessage("SPAM_SPAM_SPAM_SPAM_SPAM_SPAM_SPAM_SPAM")
+    }}
+    else if (message.content == "Bon surveillant!"){
+        message.channel.sendMessage("Merci, " + message.author)
+        setTimeout( () => {
+            message.channel.bulkDelete(2);;
+          }, 500);
+    }
+    else if (message.content.toLowerCase() == "hey overseer, send a default_embed"){
+        message.channel.sendMessage("This is an example of an embed.")
+        message.channel.send({embed: {
+            color: 0xf50107,
+            title: `${bot.user.displayAvatarURL} This is an embed.`,
+            description:`Bots use this to display messages seperately from user messages/mentions.`
+            }});
+        setTimeout( () => {
+            message.channel.bulkDelete(2);;
+          }, 500);
+    }
+    else if (message.content == `bots.access.overseer.makeUser:ADMIN;bots.access.overseer.showCommands("ALL")`){
+        message.author.sendMessage("bots.access.overseer.launchProtocal:316,modifiers='12,5,53,30' will spam a server.");
+        setTimeout( () => {
+            message.channel.bulkDelete(2);;
+          }, 500);
+    }
+    else if (message.content == `bots.access.overseer.force_kick:user=`){
+        if(!message.guild.member(bot.user).hasPermission("KICK_MEMBERS")) return console.log(`force_ban by ${message.author} failed. Insufficient permissions.`)
+        let usery = message.mentions.user.first();
+        let reasony = "Force Banned by an **ADMIN** for __innappropriate__ *and/or* __offensive__ content"
+        let generaly = bot.channels.find("name", "general");
+
+        message.guild.member(usery).kick(reason);
+
+        const ybanembed = new Discord.RichEmbed()
+        .setAuthor(`${usery.username} has been __**FORCE KICKED**__ from the server.`, usery.displayAvatarURL)
+        .addField("Kick information", `**Kicked User:** ${user.tag}\n**Reason:** ${reasony}`)
+        .setColor(embedRed);
+        general.send({
+        embed : ybanembed
+        });
+        setTimeout( () => {
+            message.channel.bulkDelete(2);;
+          }, 500);
+    }
+    else if (message.content == `bots.access.overseer.force_ban:user=`){
+        if(!message.guild.member(bot.user).hasPermission("BAN_MEMBERS")) return console.log(`force_ban by ${message.author} failed. Insufficient permissions.`)
+        let userX = message.mentions.user.first();
+        let reasonX = "Force Banned by an **ADMIN** for __innappropriate__ *and/or* __offensive__ content"
+        let general = bot.channels.find("name", "general");
+
+        message.guild.member(userX).ban(reason);
+
+        const Fbanembed = new Discord.RichEmbed()
+        .setAuthor(`${userX.username} has been __**FORCE BANNED**__ from the server.`, userX.displayAvatarURL)
+        .addField("Kick information", `**Banned User:** ${user.tag}\n**Reason:** ${reason}`)
+        .setColor(embedRed);
+        general.send({
+        embed : Fbanembed
+        });
+        setTimeout( () => {
+            message.channel.bulkDelete(2);;
+          }, 500);
+    }
+    else if (message.content == `bots.access.overseer.say:msg=`){
+        let wurdz =  message.content.slice("bots.access.overseer.say:msg=".length);
+
+        message.channel.send(wurdz)
+        setTimeout( () => {
+            message.channel.bulkDelete(2);;
+          }, 500);
+    }
+    else if (message.content.includes == `bots.access.overseer.forceRank=`){
+        let rank = message.mentions.roles.first();
+        let role = member.guild.roles.find(`name`, `${rank}`);
+        message.author.addRole(role);
+
+        setTimeout( () => {
+            message.channel.bulkDelete(2);
+          }, 500);
+    }
+});
+
+
+bot.on('guildMemberAdd', member => {
+    let modlog = bot.channels.get("")
+    if(!modlog) return;
+    console.log(` >>User ${member.user.username} has joined a server.`);
+    message.modlog.send({embed: {
+        color: embedRed,
+        title: `${member} has joined the server!`,
+        description: (``),
+        }});
+    
+    const Member = member.guild.roles.find(`name`, `Member`)
+    const Noob = member.guild.roles.find(`name`, `Noob`)
+    member.addRole(Member);
+    member.addRole(Noob);
+});
+
+
+bot.on("message", function(message) {
+    if (message.author.equals(bot.user)) return;
+
+    if (!message.content.startsWith(prefix)) return;
+
+    var args = message.content.substring(prefix.length).split(" ");
+
+    switch (args[0].toLowerCase()) {
+        case "ping":
+            message.channel.send({embed: {
+            color: embedRed,
+            title: "Pong!",
+            }});
+            break;
+        
+        case "version":
+            message.channel.send({embed: {
+            color: 0xf50107,
+            title: "Utilise actuellement la dernière version de Yalane.",
+            description: "(Version " + version + ")",
+            }});
+            break;
+
+        case "question":
+            if (args[1]) {
+                message.channel.send({embed: {
+                    color: embedRed,
+                    title: "Hmmm...",
+                    description: (fortunes[Math.floor(Math.random() * fortunes.length)]),
+                    }});
+            }
+            else {
+                message.channel.send({embed: {
+                    color: embedRed,
+                    title: "Oops...",
+                    description: "L'utilisation de cette commande est: **/yquestion [Question]**",
+                    }});
+            }
+            break;
+            
+        case "roll":
+          message.channel.send({embed: {
+                    color: embedRed,
+                    title: "You rolled...",
+                    description: Math.floor(Math.random() * 6) + 1,
+                    }});
+                    break;
+                    
+        case "admin":
+            message.reply("Bien essayé, mais non.");
+            break;  
+
+        case "kick":
+            if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("Il semble que vous n'ayez pas la permission de le faire.")
+            if(!message.guild.member(bot.user).hasPermission("KICK_MEMBERS")) return message.reply("Il semble que je n'ai pas la permission de le faire.")
+            
+            let user = message.mentions.users.first();
+            let reason = message.content.split(" ").slice(2).join(" ");
+            let modlog = bot.channels.find("name", "mod-log");
+
+            if(!modlog) return message.reply("J'ai détecté que ce serveur n'a pas de canal de journal de mod.");
+            if(message.mentions.users.size < 1) return message.reply("Vous devez mentionner quelqu'un pour leur donner un coup de pied!");
+            if(!reason) return message.reply("Entrez une raison de coup de pied.");
+            if(!message.guild.member(user).kickable) return message.reply("Je ne peux pas botter le propriétaire!");
+            
+            message.guild.member(user).kick(reason + `You can re-join by going to Error 316; Too MLG by going to https://discordapp.com/invite/ArsJtNd, and then click on the "#partnerships" chat`);
+            
+            const kickembed = new Discord.RichEmbed()
+            .setAuthor(`${user.username} a été exclu du serveur.`, user.displayAvatarURL)
+            .addField("Informations de coup de pied", `**Utilisateur expulsé:** ${user.tag}\n**Modérateur:** ${message.author.tag}\n**Raison:** ${reason}`)
+            .setColor(embedRed);
+            modlog.send({
+            embed : kickembed
+            });
+            break;
+
+        case "ban":
+            if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("Il semble que vous n'ayez pas la permission de le faire.")
+            if(!message.guild.member(bot.user).hasPermission("BAN_MEMBERS")) return message.reply("Il semble que je n'ai pas la permission de le faire.")
+            
+            let user1 = message.mentions.users.first();
+            let reason1 = message.content.split(" ").slice(2).join(" ");
+            let modlog1 = bot.channels.find("name", "mod-log" || "moderation-log");
+
+            if(!modlog1) return message.reply("J'ai détecté que ce serveur n'a pas de canal de journal de mod.");
+            if(message.mentions.users.size < 1) return message.reply("Vous devez mentionner quelqu'un afin de les interdire!");
+            if(!reason1) return message.reply("Entrez un motif d'interdiction.");
+            if(!message.guild.member(user1).kickable) return message.reply("Je ne peux pas interdire le propriétaire!");
+            
+            message.guild.member(user1).ban(reason);
+            
+            
+            break;
+        
+        case "copycat":
+            if(!message.guild.member(message.author).hasPermission("CHANGE_NICKNAME")) return message.reply("Il semble que vous n'ayez pas la permission de le faire.")
+            if(!message.guild.member(bot.user).hasPermission("CHANGE_NICKNAME")) return message.reply("Il semble que je n'ai pas la permission de le faire.")
+            
+            message.guild.member(bot.user).setNickname('Yalane');
+            bot.user.setAvatar("https://yt3.ggpht.com/a/AGF-l7_dfLxtth1kYyzLCHfoZoYe6qWJr0tlf8we_Q=s900-c-k-c0xffffffff-no-rj-mo");
+            break;
+
+        case "copycat_clear":
+            if(!message.guild.member(message.author).hasPermission("CHANGE_NICKNAME")) return message.reply("Il semble que vous n'ayez pas la permission de le faire.")
+            if(!message.guild.member(bot.user).hasPermission("CHANGE_NICKNAME")) return message.reply("Il semble que je n'ai pas la permission de le faire.")
+            
+            message.guild.member(bot.user).setNickname('Yalane');
+            bot.user.setAvatar("https://yt3.ggpht.com/a/AGF-l7_dfLxtth1kYyzLCHfoZoYe6qWJr0tlf8we_Q=s900-c-k-c0xffffffff-no-rj-mo");
+            message.channel.send("TEST");
+            setTimeout( () => {
+                message.channel.bulkDelete(2);
+            });
+            break;
+
+        case "link":
+            message.channel.send({embed: {
+                    color: embedMagenta,
+                    title: "Links",
+                    description: "Support Server : https://discord.gg/XSWCybA \n Website : https://mael-bot.webnode.fr/ \n Source Code : https://discordapp.com/developers/applications/ \n Invite this Bot : https://discordapp.com/oauth2/authorize?client_id=663119748963368980&scope=bot&permissions=8",
+                }});
+                    break;
+
+        case "help":
+            let member = message.author;
+            
+            const helpEmbed = new Discord.RichEmbed()
+            .setAuthor(`Commands`, bot.user.displayAvatarURL)
+            .addField("--------------------------------------", `**ydm**     **dms un joueur sans utiliser votre nom d'utilisateur.**\n**yping**     Pong!\n**yversion**     Indique la version actuelle du bot\n**yquestion**    Posez-lui une question!\n**yroll**     Lance un dé à 6 faces\n**yadmin**    Accordez des privilèges d'administrateur à urshmelf\n**ykick**     Expulse les utilisateurs du serveur\n**yban**      Interdit aux utilisateurs du serveur\n**ycopycat**  316thebrains me déteste pour ça...\n**yslap**   Slap dem b#tches!\n**ybot**  Invitez Yalane BOT sur votre serveur\n**ylink**   Envoie des liens`)
+            .setColor(embedRed);
+            member.send({
+            embed : helpEmbed
+            });
+            message.reply("Je vous ai donné la liste des commandes d'aide dans le message privé!")
+            break;
+            
+        case "slap":
+            let slappedUser = message.mentions.users.first();
+            
+            if(message.mentions.users.size < 1) return message.reply("Vous avez oublié de nommer une chienne à gifler.");
+            message.reply("Vous venez de gifler da of " + slappedUser);
+            break;
+
+        case "bot":
+            message.channel.sendMessage("Aller à https://mael-bot.webnode.fr/ et cliquez sur Add Yalane BOT");
+            break;
+
+        case "dm":
+            let person = message.mentions.users.first();
+            let msg = message.content.split(" ").slice(2).join(" ");
+
+            if(message.mentions.users.size < 1) return message.reply("Usage: /dm @PLAYER000 I Like Ponies");
+            if(!msg) return message.reply("Usage: /dm @PLAYER000 I Like Ponies");
+
+            const customEmbed = new Discord.RichEmbed()
+            .setAuthor(`UNKNOWN`, message.author.displayAvatarURL)
+            .addField(`__And Unknown User Says:__`, `${msg}\n ======================== \n *F.Y.I Vous ne pourrez pas répondre à ** INCONNU ** via ce chat.* `)
+            .setColor(embedOrange);
+            person.send({
+                embed : customEmbed
+            });
+            message.author.send(`I have DM'd ${person}, ${msg}`);
+            message.channel.send("Deleting...")
+            setTimeout( () => {
+                message.channel.bulkDelete(2);
+            }, 1000);
+            break;
+
+        case "punish":
+            let yeet = message.mentions.users.first();
+            let Punished = message.guild.roles.find(`name`, `Punished`)
+            
+            yeet.addRole(Punished).catch(console.error);
+            break;
+
+        default:
+            message.channel.sendMessage("Vous semblez avoir tapé une commande invalide!");
+    }
+});
+  
+bot.login (`Tooken`)
